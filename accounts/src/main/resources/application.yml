@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: accounts
+    version: 1.0
+    title: Accounts
+  config:
+    import: optional:configserver:http://localhost:8888
+    profile: ${spring.profiles.active}
+  profiles:
+    active: production
+  h2:
+    console:
+      enabled: true
+  datasource:
+    driverClassName: org.h2.Driver
+    initialization-mode: always
+    initialize: true
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: none

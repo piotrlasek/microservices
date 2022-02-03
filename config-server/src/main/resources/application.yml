@@ -6,8 +6,10 @@ spring:
       server:
         git:
           uri: https://github.com/piotrlasek/microservices.git
+          default-label: main
+          clone-on-start: true
           refresh-rate: 15
           timeout: 5
-          search-paths: 'configuration/,configuration/{application}/{profile}'
+          search-paths: '/configuration/,configuration/{application}/{profile}'
 server:
   port: 8888
