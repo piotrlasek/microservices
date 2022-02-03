@@ -10,7 +10,7 @@ public class CustomerService {
     private CustomerRepository customerRepository;
 
     public Customer getCustomerById(Long id) {
-
-        return null;
+        Customer c = customerRepository.findCustomerByCustomerId(id);
+        return c;
     }
 }

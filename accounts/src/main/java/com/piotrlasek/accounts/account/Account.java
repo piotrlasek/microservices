@@ -10,8 +10,6 @@ import javax.persistence.*;
 @Entity(name="accounts")
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -1,11 +1,15 @@
 package com.piotrlasek.accounts.account;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Data
 @RestController
 @RequestMapping(value="/v1")
 public class AccountsController {

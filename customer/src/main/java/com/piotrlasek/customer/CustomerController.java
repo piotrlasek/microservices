@@ -15,7 +15,16 @@ public class CustomerController {
 
     @GetMapping(value="/{idCustomer}")
     public GetCustomerResponse getCustomerById(@PathVariable(value="idCustomer") Long idCustomer) {
+        Customer customer = customerService.getCustomerById(idCustomer);
 
-        return null;
+        CustomerDto customerDto = new CustomerDto();
+        customerDto.setId(customer.getId());
+        customerDto.setFirstName(customer.getFirstName());
+        customerDto.setLastName(customer.getLastName());
+
+        GetCustomerResponse response = GetCustomerResponse.of(customerDto);
+
+
+        return response;
     }
 }

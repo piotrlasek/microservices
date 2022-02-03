@@ -1,10 +1,15 @@
 package com.piotrlasek.customer;
 
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
+
+
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "customer")
+@Getter
+@Setter
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
