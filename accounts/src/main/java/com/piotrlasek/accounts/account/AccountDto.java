@@ -7,7 +7,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Setter
 @Getter
-public class AccountDTO {
+public class AccountDto {
     private Long id;
 
     private String nrb;
