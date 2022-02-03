@@ -1,0 +1,10 @@
+server:
+        port: 7778
+spring:
+        datasource:
+                url: jdbc:h2:mem:customer
+                username: sa
+                password: 
+                initialization-mode: always
+                initialize: true
+                

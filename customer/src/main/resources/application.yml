@@ -1,8 +1,8 @@
 spring:
   application:
-    name: accounts
+    name: customer
     version: 1.0
-    title: Accounts
+    title: Customer
   profiles:
     active: production
   config:
@@ -23,11 +23,11 @@ management:
   endpoints:
     web:
       exposure:
-#        include: health,info
+        #        include: health,info
         include: '*'
 info:
   app:
-    name: "Accounts"
+    name: "Customer"
     version: "0.0.1"
     profile: ${spring.profiles.active}
   serverInfo:
