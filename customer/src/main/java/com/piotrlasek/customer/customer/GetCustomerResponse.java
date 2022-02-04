@@ -1,4 +1,4 @@
-package com.piotrlasek.customer;
+package com.piotrlasek.customer.customer;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

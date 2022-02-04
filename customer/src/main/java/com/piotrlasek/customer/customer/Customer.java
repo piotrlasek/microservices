@@ -1,4 +1,4 @@
-package com.piotrlasek.customer;
+package com.piotrlasek.customer.customer;
 
 
 

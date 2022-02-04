@@ -23,8 +23,7 @@ management:
   endpoints:
     web:
       exposure:
-        #        include: health,info
-        include: '*'
+        include: info, health, refresh, metrics, mappings
 info:
   app:
     name: "Customer"
@@ -32,3 +31,5 @@ info:
     profile: ${spring.profiles.active}
   serverInfo:
     port: ${server.port}
+application:
+  allow-get-customer: {$customer.allow-get-customer}

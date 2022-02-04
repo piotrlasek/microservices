@@ -1,4 +1,4 @@
-package com.piotrlasek.customer;
+package com.piotrlasek.customer.customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
