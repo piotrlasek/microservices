@@ -5,7 +5,7 @@ spring:
                 driverClassName: org.postgresql.Driver
                 url: jdbc:postgresql://192.168.2.5:5432/customer
                 username: postgres
-                password: test
+                password: postgres
                 initialization-mode: always
                 initialize: true
 customer:

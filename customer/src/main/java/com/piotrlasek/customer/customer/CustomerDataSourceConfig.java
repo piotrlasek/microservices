@@ -30,6 +30,7 @@ public class CustomerDataSourceConfig {
 
     @Bean
     @Primary
+    @RefreshScope
     DataSource getDataSource() {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
 
