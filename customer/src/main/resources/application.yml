@@ -12,7 +12,6 @@ spring:
     console:
       enabled: true
   datasource:
-    driverClassName: org.h2.Driver
     initialization-mode: always
     initialize: true
   jpa:
