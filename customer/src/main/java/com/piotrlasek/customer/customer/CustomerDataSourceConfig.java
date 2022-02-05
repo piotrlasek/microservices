@@ -1,5 +1,6 @@
 package com.piotrlasek.customer.customer;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -10,6 +11,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @RefreshScope
+@Slf4j
 public class CustomerDataSourceConfig {
 
     @Value("${spring.datasource.driverClassName}")
@@ -32,6 +34,12 @@ public class CustomerDataSourceConfig {
         dataSourceBuilder.url(url);
         dataSourceBuilder.username(username);
         dataSourceBuilder.password(password);
+
+        log.info("-----");
+        log.info(driverClassName);
+        log.info(url);
+        log.info(username);
+        log.info(password);
 
         return dataSourceBuilder.build();
     }

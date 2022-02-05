@@ -3,8 +3,8 @@ server:
 spring:
         datasource:
                 url: jdbc:h2:mem:customer
-                username: su
-                password:
+                username: sa
+                password: sa
                 initialization-mode: always
                 initialize: true
 customer:
