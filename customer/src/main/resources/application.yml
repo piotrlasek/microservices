@@ -34,3 +34,5 @@ application:
   allow-get-customer: ${customer.allow-get-customer}
 demo:
   name: "zażółć gęślą jaźń"
+eureka:
+  client: ${eureka-client}
