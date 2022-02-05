@@ -32,4 +32,6 @@ info:
   serverInfo:
     port: ${server.port}
 application:
-  allow-get-customer: {$customer.allow-get-customer}
+  allow-get-customer: ${customer.allow-get-customer}
+demo:
+  name: "zażółć gęślą jaźń"

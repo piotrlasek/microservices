@@ -28,6 +28,8 @@ public class CustomerController {
     @GetMapping(value="/{idCustomer}")
     public GetCustomerResponse getCustomerById(@PathVariable(value="idCustomer") Long idCustomer) {
 
+        log.info(">>> " + allowGetCustomer);
+
         if (!allowGetCustomer) {
             log.info("Getting customer info is disabled.");
             throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Getting accounts is disabled");
@@ -41,7 +43,7 @@ public class CustomerController {
         customerDto.setLastName(customer.getLastName());
 
         GetCustomerResponse response = GetCustomerResponse.of(customerDto);
-        
+
         return response;
     }
 }

@@ -1,0 +1,4 @@
+server:
+  port: 7654
+demo:
+  name: "Hello World!"

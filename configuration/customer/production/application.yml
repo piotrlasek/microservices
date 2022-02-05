@@ -8,4 +8,4 @@ spring:
                 initialization-mode: always
                 initialize: true
 customer:
-        allow-get-customer: true
+        allow-get-customer: false
