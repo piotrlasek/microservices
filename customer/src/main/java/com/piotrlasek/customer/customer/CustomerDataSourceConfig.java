@@ -30,7 +30,6 @@ public class CustomerDataSourceConfig {
 
     @Bean
     @Primary
-    @RefreshScope
     DataSource getDataSource() {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
 
@@ -38,12 +37,6 @@ public class CustomerDataSourceConfig {
         dataSourceBuilder.url(url);
         dataSourceBuilder.username(username);
         dataSourceBuilder.password(password);
-
-        log.info("-----");
-        log.info(driverClassName);
-        log.info(url);
-        log.info(username);
-        log.info(password);
 
         return dataSourceBuilder.build();
     }
