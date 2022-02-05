@@ -12,8 +12,8 @@ spring:
     console:
       enabled: true
   datasource:
-    initialization-mode: always
-    initialize: true
+#    initialization-mode: always
+#    initialize: true
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
