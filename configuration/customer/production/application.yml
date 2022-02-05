@@ -2,9 +2,9 @@ server:
         port: 7778
 spring:
         datasource:
-                url: jdbc:h2:mem:customer
-                username: ab
-                password: ab
+                url: jdbc:postgresql://localhost:5432/postgres
+                username: postgres
+                password: postgres
                 initialization-mode: always
                 initialize: true
 customer:
