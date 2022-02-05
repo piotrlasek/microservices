@@ -27,6 +27,7 @@ public class CustomerDataSourceConfig {
     private String username;
 
     @Bean
+    @RefreshScope
     DataSource getDataSource() {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
 
