@@ -8,6 +8,7 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 @SpringBootApplication
 @RefreshScope
 @EnableDiscoveryClient
+@EnableFeignClients
 public class CustomerApplication {
 
 	public static void main(String[] args) {
