@@ -23,7 +23,7 @@ public class AccountsController {
     @Autowired
     private AccountsService accountsService;
 
-    @Value("${account.allow-get-accounts}")
+    @Value("${accounts.allow-get-accounts}")
     private boolean allowGetAccounts;
 
     @GetMapping(value = "/accounts")
