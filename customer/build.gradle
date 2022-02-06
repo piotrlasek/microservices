@@ -12,6 +12,11 @@ repositories {
 	mavenCentral()
 }
 
+ext {
+	set('springCloudVersion', "2020.0.3")
+	set('resilience4jVersion', '1.7.1')
+}
+
 dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
@@ -26,15 +31,14 @@ dependencies {
 	implementation 'org.springframework.cloud:spring-cloud-starter-config'
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+	implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
+	implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
 
-ext {
-	set('springCloudVersion', "2020.0.3")
-}
 dependencyManagement {
 	imports {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"

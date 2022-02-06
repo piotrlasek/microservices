@@ -2,6 +2,7 @@ package com.piotrlasek.customer.controller;
 
 import com.piotrlasek.customer.domain.Customer;
 import com.piotrlasek.customer.dto.AccountDto;
+import com.piotrlasek.customer.dto.CardDto;
 import com.piotrlasek.customer.dto.CustomerDto;
 import com.piotrlasek.customer.response.GetCustomerProductResponse;
 import com.piotrlasek.customer.response.GetCustomerResponse;
@@ -22,7 +23,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/v1/customer")
 @RefreshScope
 @Slf4j
 @RequiredArgsConstructor
@@ -59,15 +60,20 @@ public class CustomerController {
     @GetMapping(value="/{customerId}/products")
     public GetCustomerProductResponse getCustomerProducts(@PathVariable Long customerId) {
 
+
+        log.info("Getting customer {} products.", customerId);
+
         Customer customer =
                 customerService.getCustomerById(customerId)
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
         List<AccountDto> customerAccounts = productService.findCustomerAccounts(customerId);
+        List<CardDto> customerCards = productService.findCustomerCards(customerId);
 
         return GetCustomerProductResponse.builder()
                 .customerId(customer.getId())
                 .accounts(customerAccounts)
+                .cards(customerCards)
                 .fullName(customer.getFirstName() + " " + customer.getLastName())
                 .build();
     }

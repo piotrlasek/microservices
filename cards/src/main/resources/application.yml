@@ -1,8 +1,8 @@
 spring:
   application:
-    name: customer
+    name: cards
     version: 1.0
-    title: Customer
+    title: Cards
   profiles:
     active: production
   config:
@@ -12,8 +12,9 @@ spring:
     console:
       enabled: true
   datasource:
-#    initialization-mode: always
-#    initialize: true
+    driverClassName: org.h2.Driver
+    initialization-mode: always
+    initialize: true
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
@@ -22,21 +23,15 @@ management:
   endpoints:
     web:
       exposure:
-        include: info, health, refresh, metrics, mappings
+        include: '*'
 info:
   app:
-    name: "Customer"
+    name: "Cards"
     version: "0.0.1"
     profile: ${spring.profiles.active}
   serverInfo:
     port: ${server.port}
-application:
-  allow-get-customer: ${customer.allow-get-customer}
-demo:
-  name: "zażółć gęślą jaźń"
 eureka:
   client: ${eureka-client}
-feign:
-  circuitbreaker:
-    enabled: true
-
+server:
+  port: 9950

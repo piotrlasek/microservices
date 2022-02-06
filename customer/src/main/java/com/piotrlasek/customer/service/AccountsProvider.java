@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 public class AccountsProvider {
     private final AccountsConnector accountsConnector;
 
+    // @HystrixCommand(fallbackMethod = "fallbackGetAccounts")
     public List<AccountDto> getCustomerAccounts(Long customerId) {
         return accountsConnector.getAccounts(customerId)
                 .getAccounts()
@@ -24,4 +25,10 @@ public class AccountsProvider {
                         account.getAvailableFunds()
                 )).collect(Collectors.toList());
     }
+
+    /*
+    private List<AccountDto> fallbackGetAccounts(Long customerId) {
+        return Collection.emptyList();
+    }
+     */
 }
