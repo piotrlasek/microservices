@@ -1,4 +1,4 @@
-package com.piotrlasek.customer.customer;
+package com.piotrlasek.customer.dto;
 
 import lombok.*;
 

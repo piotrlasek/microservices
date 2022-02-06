@@ -7,4 +7,5 @@ spring:
                 password: 
                 initialization-mode: always
                 initialize: true
-                
+accounts:
+        allow-get-accounts: true

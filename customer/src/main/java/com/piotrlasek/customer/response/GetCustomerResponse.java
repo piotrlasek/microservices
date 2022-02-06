@@ -1,5 +1,6 @@
-package com.piotrlasek.customer.customer;
+package com.piotrlasek.customer.response;
 
+import com.piotrlasek.customer.dto.CustomerDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

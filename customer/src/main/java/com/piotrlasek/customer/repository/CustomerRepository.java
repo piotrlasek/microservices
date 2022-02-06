@@ -1,5 +1,6 @@
-package com.piotrlasek.customer.customer;
+package com.piotrlasek.customer.repository;
 
+import com.piotrlasek.customer.domain.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
