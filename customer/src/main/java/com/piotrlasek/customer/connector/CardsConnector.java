@@ -20,6 +20,7 @@ public interface CardsConnector {
 class CardsConnectorFallback implements CardsConnector {
     @Override
     public GetCardsResponse getCards(Long customerId) {
+        log.warn("Cards can not be retrieved at the moment.");
         return GetCardsResponse.of(Collections.emptyList());
     }
 }
