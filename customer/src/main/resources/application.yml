@@ -8,9 +8,9 @@ spring:
   config:
     import: optional:configserver:http://localhost:8888
     profile: ${spring.profiles.active}
-  h2:
-    console:
-      enabled: true
+#  h2:
+#    console:
+#      enabled: true
   datasource:
 #    initialization-mode: always
 #    initialize: true
@@ -34,9 +34,13 @@ application:
   allow-get-customer: ${customer.allow-get-customer}
 demo:
   name: "zażółć gęślą jaźń"
-eureka:
-  client: ${eureka-client}
+#eureka:
+#  client: ${eureka-client}
 feign:
   circuitbreaker:
-    enabled: true
-
+    enabled: false
+accounts:
+  ribbon:
+    eureka:
+      enabled: false
+    listOfServers: localhost:9999,localhost:9998

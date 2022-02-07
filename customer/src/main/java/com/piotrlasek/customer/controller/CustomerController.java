@@ -68,12 +68,12 @@ public class CustomerController {
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
         List<AccountDto> customerAccounts = productService.findCustomerAccounts(customerId);
-        List<CardDto> customerCards = productService.findCustomerCards(customerId);
+        // List<CardDto> customerCards = productService.findCustomerCards(customerId);
 
         return GetCustomerProductResponse.builder()
                 .customerId(customer.getId())
                 .accounts(customerAccounts)
-                .cards(customerCards)
+                //.cards(customerCards)
                 .fullName(customer.getFirstName() + " " + customer.getLastName())
                 .build();
     }

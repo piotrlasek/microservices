@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class CardsProvider {
-    private final CardsConnector cardsConnector;
+/*    private final CardsConnector cardsConnector;
 
     // @HystrixCommand(fallbackMethod = "fallbackGetAccounts")
     public List<CardDto> getCustomerCards(Long customerId) {
@@ -26,5 +26,5 @@ public class CardsProvider {
                         card.getValidUntil()
                 )).collect(Collectors.toList());
     }
-
+*/
 }

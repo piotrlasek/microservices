@@ -1,4 +1,4 @@
-package com.piotrlasek.customer.repository;
+package com.piotrlasek.customer.configuration;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

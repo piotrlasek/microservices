@@ -8,7 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collections;
+public class CardsConnector {
 
+}
+
+/*
 @FeignClient(name = "cards", fallback = CardsConnectorFallback.class)
 public interface CardsConnector {
     @GetMapping("/v1/cards")
@@ -24,3 +28,4 @@ class CardsConnectorFallback implements CardsConnector {
         return GetCardsResponse.of(Collections.emptyList());
     }
 }
+*/

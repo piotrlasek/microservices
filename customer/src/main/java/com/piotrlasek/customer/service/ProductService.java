@@ -11,13 +11,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductService {
     private final AccountsProvider accountsProvider;
-    private final CardsProvider cardsProvider;
+    //private final CardsProvider cardsProvider;
 
     public List<AccountDto> findCustomerAccounts(Long customerId) {
         return accountsProvider.getCustomerAccounts(customerId);
     }
 
+    /*
     public List<CardDto> findCustomerCards(Long customerId) {
         return cardsProvider.getCustomerCards(customerId);
     }
+
+     */
 }

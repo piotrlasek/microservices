@@ -1,5 +1,5 @@
 plugins {
-	id 'org.springframework.boot' version '2.5.9'
+	id 'org.springframework.boot' version '2.3.0.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 }
@@ -13,8 +13,7 @@ repositories {
 }
 
 ext {
-	set('springCloudVersion', "2020.0.3")
-	set('resilience4jVersion', '1.7.1')
+	set('springCloudVersion', "Hoxton.SR5")
 }
 
 dependencies {
@@ -29,10 +28,13 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springframework.cloud:spring-cloud-starter'
 	implementation 'org.springframework.cloud:spring-cloud-starter-config'
-	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+	//implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 	implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
-	implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j'
+	implementation 'org.springframework.cloud:spring-cloud-starter-loadbalancer'
+	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-ribbon'
+
+
 }
 
 tasks.named('test') {
