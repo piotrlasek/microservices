@@ -1,3 +1,16 @@
+import org.springframework.cloud.contract.verifier.config.TestFramework
+
+buildscript {
+	repositories {
+		mavenCentral()
+		mavenLocal()
+	}
+
+	dependencies {
+		classpath 'org.springframework.cloud:spring-cloud-contract-gradle-plugin:2.2.3.RELEASE'
+	}
+}
+
 plugins {
 	id 'org.springframework.boot' version '2.3.0.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
@@ -8,15 +21,26 @@ group = 'com.piotrlasek'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
+apply plugin: 'spring-cloud-contract'
+apply plugin: 'maven-publish'
+
 repositories {
 	mavenCentral()
+	mavenLocal()
 }
 
 ext {
 	set('springCloudVersion', "Hoxton.SR5")
 }
 
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
 dependencies {
+	implementation 'junit:junit:4.13.1'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 
@@ -33,16 +57,37 @@ dependencies {
 	implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
 	implementation 'org.springframework.cloud:spring-cloud-starter-loadbalancer'
 	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-netflix-ribbon'
+	implementation 'io.rest-assured:spring-mock-mvc'
 
-
-}
-
-tasks.named('test') {
-	useJUnitPlatform()
+	testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-stub-runner'
+	testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-verifier'
+	testImplementation 'io.rest-assured:spring-mock-mvc'
+	testImplementation 'com.h2database:h2:1.4.200'
 }
 
 dependencyManagement {
 	imports {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
 	}
+}
+
+contracts {
+	testFramework = TestFramework.JUNIT5
+	packageWithBaseClasses = 'com.piotrlasek.customer'
+}
+
+test {
+	useJUnitPlatform()
+}
+
+task stubsJar(type: Jar) {
+	classifier = "stubs"
+	into("META-INF/${project.group}/${project.name}/${project.version}/mappings") {
+		include('**/*.*')
+		from("${project.buildDir}/generated-snippets/stubs")
+	}
+}
+
+contracts {
+	failOnNoContracts = false
 }

@@ -23,18 +23,18 @@ public class AccountsController {
     @Autowired
     private AccountsService accountsService;
 
-    @Value("${accounts.allow-get-accounts}")
-    private boolean allowGetAccounts;
+    /*@Value("${accounts.allow-get-accounts}")
+    private boolean allowGetAccounts;*/
 
     @GetMapping(value = "/accounts")
     @ResponseBody
     public GetAccountsResponse findAccountsByCustomerId(@RequestParam(value="customerId") String customerId) {
         log.info("Getting accounts for customerId: {}", customerId);
 
-        if (!allowGetAccounts) {
+        /*if (!allowGetAccounts) {
             log.info("Getting accounts is disabled!");
             throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "Getting accounts is disabled");
-        }
+        }*/
 
         List<Account> accounts =  accountsService.findAccountsByCustomerId(Long.parseLong(customerId));
         List<AccountDto> accountDtos = toDTOs(accounts);
