@@ -1,13 +1,15 @@
 package com.piotrlasek.accounts.account;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity(name="accounts")
 @Getter
 @Setter
-@Builder
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

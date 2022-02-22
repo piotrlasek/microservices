@@ -1,5 +1,3 @@
-drop table if exists accounts;
-
 create table accounts (
    id int not null,
    customer_id int not null,

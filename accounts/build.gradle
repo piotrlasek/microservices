@@ -1,19 +1,6 @@
-import org.springframework.cloud.contract.verifier.config.TestFramework
-
-buildscript {
-	repositories {
-		mavenCentral()
-		mavenLocal()
-	}
-
-	dependencies {
-		classpath 'org.springframework.cloud:spring-cloud-contract-gradle-plugin:2.2.3.RELEASE'
-	}
-}
-
 plugins {
-	id 'org.springframework.boot' version '2.3.0.RELEASE'
-	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'org.springframework.boot' version '2.5.9'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 }
 
@@ -21,22 +8,14 @@ group = 'com.piotrlasek'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
-apply plugin: 'spring-cloud-contract'
-apply plugin: 'maven-publish'
-
-repositories {
-	mavenCentral()
-	mavenLocal()
-}
-
-ext {
-	set('springCloudVersion', "Hoxton.SR5")
-}
-
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
+}
+
+repositories {
+	mavenCentral()
 }
 
 dependencies {
@@ -47,40 +26,21 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	implementation("com.h2database:h2")
+	implementation("com.h2database:h2:1.4.199")
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 	implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
-	implementation 'org.springframework.cloud:spring-cloud-contract-gradle-plugin'
-
-	implementation 'io.rest-assured:spring-mock-mvc'
-
-	testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-stub-runner'
-	testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-verifier'
-	testImplementation 'io.rest-assured:spring-mock-mvc'
-	testImplementation 'com.h2database:h2'
 }
 
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+ext {
+	set('springCloudVersion', "2020.0.3")
+}
 dependencyManagement {
 	imports {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
 	}
 }
-
-contracts {
-	testFramework = TestFramework.JUNIT5
-	packageWithBaseClasses = 'com.piotrlasek.accounts'
-}
-
-test {
-	useJUnitPlatform()
-}
-
-task stubsJar(type: Jar) {
-	classifier = "stubs"
-	into("META-INF/${project.group}/${project.name}/${project.version}/mappings") {
-		include('**/*.*')
-		from("${project.buildDir}/generated-snippets/stubs")
-	}
-}
-
