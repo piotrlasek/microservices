@@ -1,10 +1,11 @@
+
 plugins {
-	id 'org.springframework.boot' version '2.5.9'
+	id 'org.springframework.boot' version '2.3.0.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 }
 
-group = 'com.piotrlasek'
+group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
@@ -19,33 +20,34 @@ repositories {
 	mavenCentral()
 }
 
+ext {
+	set('springCloudVersion', "Hoxton.SR5")
+}
+
 dependencies {
 	implementation 'com.kodilla:common:0.0.1'
-
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.cloud:spring-cloud-starter'
 	implementation 'org.springframework.cloud:spring-cloud-starter-config'
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	implementation("com.h2database:h2:1.4.199")
-	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 	implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
 	implementation 'org.springframework.kafka:spring-kafka'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.kafka:spring-kafka-test'
+
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
 }
 
-tasks.named('test') {
-	useJUnitPlatform()
-}
-
-ext {
-	set('springCloudVersion', "2020.0.3")
-}
 dependencyManagement {
 	imports {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
 	}
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
 }

@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,6 +41,19 @@ public class AccountsController {
         List<AccountDto> accountDtos = toDTOs(accounts);
         GetAccountsResponse response = GetAccountsResponse.of(accountDtos);
         return response;
+    }
+
+    @GetMapping(value = "/funds")
+    public GetFundsResponse findFundsByNrb(@RequestParam(value="nrb") String nrb) {
+        BigDecimal funds = accountsService.findFundsByNrb(nrb);
+        GetFundsResponse response = GetFundsResponse.of(funds);
+        return response;
+    }
+
+    @PutMapping(value = "/transfer")
+    public void transfer(@RequestParam(value="nrb") String nrb, @RequestParam(value="amount") BigDecimal amount) {
+        log.info("Transfering {} to/from {} ", amount, nrb);
+        accountsService.transfer(nrb, amount);
     }
 
     public List<AccountDto> toDTOs(List<Account> accounts) {

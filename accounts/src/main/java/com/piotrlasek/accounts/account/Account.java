@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity(name="accounts")
 @Getter
@@ -22,7 +23,7 @@ public class Account {
     private String nrb;
 
     @Column(name="available_funds")
-    private Float availableFunds;
+    private BigDecimal availableFunds;
     
     @Column
     private String currency;
