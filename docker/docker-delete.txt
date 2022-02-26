@@ -1,0 +1,13 @@
+# modyfikacja kontenera w taki sposób, aby dane postgresowe w kontenerze,
+# które zachowywane są w katalogu /data (!), były zapisywane w lokalnym
+# katalogu /val/lib/postgresql/data
+
+
+sudo docker run \
+	-d \
+	-p 5432:5432 \
+	-e POSTGRES_USERNAME=kodilla \
+	-e POSTGRES_PASSWORD=kodilla \
+	-e POSTGRES_DBNAME=kodilla-quites \
+	-v /var/lib/postgresql/data:/data \
+	frodenas/postgresql
