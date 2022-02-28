@@ -13,4 +13,10 @@ public class HelloController {
     public String hello(@RequestParam Optional<String> name) {
         return name.map(n -> "Hello " + n + " !").orElse("Hello, World!");
     }
+
+    @GetMapping("/hello")
+    public String health() {
+        return "OK";
+    }
+
 }

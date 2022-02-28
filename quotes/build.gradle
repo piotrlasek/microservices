@@ -2,11 +2,13 @@ plugins {
 	id 'org.springframework.boot' version '2.6.4'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+	id 'com.palantir.docker' version '0.22.1'
 }
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
+def dockerHubName = 'kerkes'
 
 configurations {
 	compileOnly {
@@ -25,6 +27,11 @@ dependencies {
 	runtimeOnly 'org.postgresql:postgresql'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+docker {
+	name "${dockerHubName}" + "/" + "${project.name}:${project.version}"
+	files 'app.jar'
 }
 
 tasks.named('test') {
