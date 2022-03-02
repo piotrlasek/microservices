@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quotes-app
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: quotes-app
+  replicas: 1
+  template:
+    metadata:
+      name: quotes-app
+      labels:
+        app: quotes-app
+    spec:
+      containers:
+        - name: quotes-app
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: quotes-postgres-config
+                  key: postgres_user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: quotes-postgres-secret
+                  key: password
+            - name: POSTGRES_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: quotes-hostname-config
+                  key: postgres_host
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: quotes-postgres-config
+                  key: postgres_db
+            - name: POSTGRES_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: quotes-postgres-config
+                  key: postgres_port
+          image: mps4dev/quotes:1.0

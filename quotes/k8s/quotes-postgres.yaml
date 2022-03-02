@@ -1,0 +1,71 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: quotes-postgres-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 16Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quotes-postgres
+spec:
+  selector:
+    matchLabels:
+      app: qoutes-postgres
+  template:
+    metadata:
+      labels:
+        app: quotes-postgres
+    spec:
+      volumes:
+        - name: quotes-postgres-storage
+          persistentVolumeClaim:
+            claimName: quotes-postres-pvc
+      containers:
+        - image: library/postgres:9.6
+          name: quotes-postgres
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: quotes-postgres-config
+                  key: postgres_user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: quotes-postgres-secret
+                  key: password
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: quotes-postgres-config
+                  key: postgres_db
+            - name: POSTGRES_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: qutoes-postgres-config
+                  key: postgres_port
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
+          ports:
+            - containerPort: 5432
+              name: quotes-postgres
+          volumeMounts:
+            - name: quotes-postgres-storage
+              mountPath: /var/lib/postgresql/data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: quotes-postgres
+spec:
+  type: ClusterIP
+  ports:
+    - port: 5432
+  selector:
+    app: quotes-postgres
