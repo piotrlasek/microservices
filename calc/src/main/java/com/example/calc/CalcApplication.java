@@ -69,7 +69,7 @@ public class CalcApplication {
 		log.info("rateTo: {}, {}, {}", rateTo.currency, rateTo.mid, rateTo.node);
 
 		BigDecimal a = BigDecimal.valueOf(Long.valueOf(amount));
-		BigDecimal r = a.multiply(rateFrom.mid).multiply(rateTo.mid);
+		BigDecimal r = a.multiply(rateFrom.mid).multiply(rateTo.mid); // TODO: raczej niepoprawna formuła
 
 		model.addAttribute("from", myRates);
 		model.addAttribute("to", myRates);
