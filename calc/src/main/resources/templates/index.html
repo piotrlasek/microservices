@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<form action="" th:action="@{/}" method="get">
+    <h1>Kalkulator walut!</h1>
+
+    Przelicz <br>
+    <input name=amount type="text" value="100"></input>
+
+    <select name="from">
+        <option th:each="f: ${from}"
+                th:value="${f.currency}"
+                th:text="${f.currency}"/>
+    </select>
+    na
+    <select name="to">
+        <option th:each="t: ${to}"
+                th:value="${t.currency}"
+                th:text="${t.currency}"/>
+    </select>
+
+    <button type=submit value="GO">GO</button>
+</form>
+
+<br>
+
+Wynik: <input type="text" th:value="${result}"></input>
+
+</body>
+
+</html>
